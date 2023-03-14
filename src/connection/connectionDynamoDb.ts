@@ -1,4 +1,3 @@
-// dynamodbClient.ts
 import { DynamoDB } from 'aws-sdk';
 
 const options = {
@@ -9,6 +8,7 @@ const options = {
     secretAccessKey: 'x',
   },
 };
+
 
 const isOffline = () => {
   return process.env.IS_OFFLINE;

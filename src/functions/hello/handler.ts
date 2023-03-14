@@ -7,7 +7,7 @@ import schema from './schema';
 
 const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
   const{id} =  event.pathParameters
-  const {user_id,title} = JSON.parse(event.body)
+  const {user_id,title} = event.body 
 
   const response = {
     id,
@@ -19,17 +19,15 @@ const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) =
 
 
  await document.put({
-    TableName:'task',
+    TableName:"task",
     Item:response
   }).promise()
 
-const result = await document.query({
+const result = await document.scan({
   TableName:'task'
 }).promise()
 
-  return formatJSONResponse({
-    message: result
-  });
+return formatJSONResponse({ ...result }, 200);
 };
 
 export const main = middyfy(hello);

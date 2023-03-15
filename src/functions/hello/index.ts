@@ -7,7 +7,7 @@ export default {
     {
       http: {
         method: 'post',
-        path: 'hello/{id}',
+        path: 'hello/{user_id}',
         request: {
           schemas: {
             'application/json': schema,

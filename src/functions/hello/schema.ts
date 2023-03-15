@@ -7,5 +7,4 @@ export default {
     done: { type: 'boolean' },
     deadline: { type: 'date' },
   },
-  required:['user_id']
 } as const;

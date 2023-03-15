@@ -1,6 +1,7 @@
 import type { AWS } from '@serverless/typescript';
 
 import hello from '@functions/hello';
+import getTasks from '@functions/getTasks';
 
 const serverlessConfiguration: AWS = {
   service: 'serverlesstask',
@@ -31,7 +32,7 @@ const serverlessConfiguration: AWS = {
     ]
   },
   // import the function via paths
-  functions: { hello },
+  functions: { hello,getTasks },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -66,6 +67,10 @@ const serverlessConfiguration: AWS = {
             {
               AttributeName:"id",
               AttributeType:"S"
+            },
+            {
+              AttributeName:"user_id",
+              AttributeType:"S"
             }
           ],
           KeySchema:[
@@ -74,9 +79,27 @@ const serverlessConfiguration: AWS = {
               KeyType:"HASH"
             }
           ],
+          GlobalSecondaryIndexes:[
+            {
+              IndexName:'user_id_index',
+              Projection: {
+                ProjectionType: "ALL"
+              },
+              ProvisionedThroughput:{
+                ReadCapacityUnits:5,
+                WriteCapacityUnits:5
+              },
+              KeySchema:[
+                {
+                  AttributeName: 'user_id',
+                  KeyType: 'HASH',
+                } 
+              ]
+            },            
+          ],
           ProvisionedThroughput:{
-            ReadCapacityUnits:1,
-            WriteCapacityUnits:1
+            ReadCapacityUnits:5,
+            WriteCapacityUnits:5
           },
         }
       }

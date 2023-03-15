@@ -1,7 +1,8 @@
 import type { AWS } from '@serverless/typescript';
 
-import hello from '@functions/hello';
+// import hello from '@functions/hello';
 import getTasks from '@functions/getTasks';
+import createTask from './src/modules/tasks/useCases/createTask';
 
 const serverlessConfiguration: AWS = {
   service: 'serverlesstask',
@@ -32,7 +33,7 @@ const serverlessConfiguration: AWS = {
     ]
   },
   // import the function via paths
-  functions: { hello,getTasks },
+  functions: { createTask,getTasks },
   package: { individually: true },
   custom: {
     esbuild: {

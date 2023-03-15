@@ -4,7 +4,9 @@
     "paths": {
       "@functions/*": ["src/functions/*"],
       "@libs/*": ["src/libs/*"],
-      "@connection/*":["./src/connection/*"]
+      "@connection/*":["./src/connection/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@tasks/*": ["./src/modules/tasks/*"]
     }
   }
 }

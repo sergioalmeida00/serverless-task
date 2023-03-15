@@ -1,7 +1,8 @@
 import type { AWS } from '@serverless/typescript';
 
 // import hello from '@functions/hello';
-import getTasks from '@functions/getTasks';
+// import getTasks from '@functions/getTasks';
+import getTasks from './src/modules/tasks/useCases/getTasks';
 import createTask from './src/modules/tasks/useCases/createTask';
 
 const serverlessConfiguration: AWS = {
